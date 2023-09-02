@@ -163,4 +163,21 @@ sudo docker run --net host --restart=unless-stopped -d -v "$(pwd)"/config:/cbsig
 
 
 
+web浏览器目录：web
+
+nginx 反代：
+location /tracker {
+  proxy_pass http://localhost:8800;
+  proxy_http_version 1.1;
+  proxy_set_header Upgrade $http_upgrade;
+  proxy_set_header Connection "Upgrade";
+}
+
+location /ws {
+  proxy_pass http://localhost:8800/ws;
+  proxy_http_version 1.1;
+  proxy_set_header Upgrade $http_upgrade;
+  proxy_set_header Connection "Upgrade";
+}
+
 
